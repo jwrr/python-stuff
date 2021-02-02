@@ -47,7 +47,7 @@ mode_cnt    = np.count_nonzero(img1 == mode_val)
 print("min={} max={} mean={:.2f} median={:0.0f} mode={} mode_cnt={}".
   format(minval, maxval, meanval, medianval, mode_val, mode_cnt))
 
-plt.hist(img1, bins=30)
+plt.hist(img1.flatten())
 plt.title("Histogram")
 plt.show()
 #

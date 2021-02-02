@@ -41,48 +41,10 @@ minval    = np.min(img1)
 maxval    = np.max(img1) 
 meanval   = np.mean(img1)
 medianval = np.median(img1)
-# modeval   = stats.mode(img1)
-# modelen   = len(modeval)
-print("min={} max={} mean={} median={}".
-  format(minval, maxval, meanval, medianval))
-
-
-
-sys.exit(0)
-
-combined_32 = img2_32 + img1_32  # has range 0 to 128K-2
-combined_clipped = np.clip(combined_32, 0, 2**16-1) ## clip to range 0 to 64K-1
-
-
-if outfilename != None:
-  print(f"Creating: {outfilename}")
-  combined_clipped.astype(np.uint16).tofile(outfilename)
-  print(f"./raw-view.py {w} {h} {bw} {outfilename}")
-  sys.exit(0)
-
-# ======================================================
-# Display combined image if outfile isn't defined
-# ======================================================
-
-img = combined_clipped.astype(int)
-#img = img_32.astype(int)
-
-fig, ax = plt.subplots()
-# ax.imshow(img, cmap="gray", interpolation="none")
-ax.imshow(img, interpolation="none")
-
-## Change default mouse-over value from float to int
-def format_coord(x,y):
-  val = img[int(y), int(x)]
-  return "x = {}, y = {} [{}]".format(int(x), int(y), val)
-ax.format_coord = format_coord
-
-plt.show()
-
-
-
-
-
-
+modearray   = stats.mode(img1, axis=None)
+mode_val    = modearray[0][0]
+mode_cnt    = np.count_nonzero(img1 == mode_val)
+print("min={} max={} mean={:.2f} median={:0.0f} mode={} mode_cnt={}".
+  format(minval, maxval, meanval, medianval, mode_val, mode_cnt))
 
 
