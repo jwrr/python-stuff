@@ -132,36 +132,38 @@ print(f"ang_radians = np.arccos(cosangle) = {ang_radians}")
 print("\n=========================")
 print("Speed Test - Dot Product in Numpy vs Pure Python")
 
-# from datetime import datetime
-#
-# a = np.random.randn(100)
-# b = np.random.randn(100)
-# T = 100000
-#
-# def dot_python(a,b):
-#   result = 0
-#   for e,f in zip(a,b):
-#     result += e*f
-#   return result
-#
-# def dot_numpy(a,b):
-#   result = np.dot(a,b)
-#   return result
-#
+from datetime import datetime
+
+a = np.random.randn(100)
+b = np.random.randn(100)
+T = 100000
+
+def dot_python(a,b):
+  result = 0
+  for e,f in zip(a,b):
+    result += e*f
+  return result
+
+def dot_numpy(a,b):
+  result = np.dot(a,b)
+  return result
+
 # t1 = datetime.now()
 # for i in range(T):
 #   dot_python(a,b)
 # t2 = datetime.now()
 # t_python = t2 - t1
 # print(f"dot_python took: {t_python} seconds")
-#
-# t1 = datetime.now()
-# for i in range(T):
-#   dot_numpy(a,b)
-# t2 = datetime.now()
-# t_numpy = t2 - t1
-# print(f"dot_numpy took: {t_numpy} seconds")
-#
+
+t1 = datetime.now()
+result = 0.0;
+for i in range(T):
+  result += dot_numpy(a,b)
+t2 = datetime.now()
+t_numpy = t2 - t1
+print(f"sum of dots = ", result)
+print(f"dot_numpy took: {t_numpy} seconds")
+
 # print(f"numpy dot is faster than pure python by: {t_python/t_numpy}")
 
 
@@ -278,7 +280,6 @@ print(f"mean_col = R.mean(axis=0) = calculates mean of each column\n{mean_col}")
 mean_of_each_row = R.mean(axis=1)
 print(f"mean_of_each_row = R.mean(axis=1) = mean of each row. 1000 means in this case")
 
-
 variance = R.var()
 print(f"variance = R.var() = {variance} = np.var(R) = {np.var(R)}")
 
@@ -287,10 +288,5 @@ print(f"std = R.std() = {std} = np.std(R) = {np.std(R)} -- sqrt of variance")
 
 Rint = np.random.randint(0,100,size=(2,4))
 print(f"Rint = np.random.randint(0,100,size=(2,4)) = \n{Rint}")
-
-
-
-
-
 
 
