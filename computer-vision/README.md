@@ -48,6 +48,13 @@ $ python3 1_opencv.py
 4.6.0
 ```
 
+Install MatPlotLib
+------------------
+
+```
+conda install -c conda-forge matplotlib
+```
+
 
 
 
